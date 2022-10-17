@@ -6,7 +6,8 @@ from direct.actor.Actor import Actor
 
 
 class WalkingPanda(ShowBase):
-    def __init__(self):
+
+    def __init__(self, no_rotate=False):
         ShowBase.__init__(self)
 
         # Load the environment model.
