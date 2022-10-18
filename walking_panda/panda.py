@@ -7,7 +7,7 @@ from direct.actor.Actor import Actor
 
 class WalkingPanda(ShowBase):
 
-    def __init__(self, no_rotate=False, scale=1):
+    def __init__(self, no_rotate=False, scale=1, pose=False):
         print(scale)
         ShowBase.__init__(self)
 
@@ -33,8 +33,11 @@ class WalkingPanda(ShowBase):
             scale = float(scale)
         self.pandaActor.setScale(0.005*scale, 0.005*scale, 0.005*scale)
         self.pandaActor.reparentTo(self.render)
-        # Loop its animation.
-        self.pandaActor.loop("walk")
+        if pose == False:
+            # Loop its animation.
+            self.pandaActor.loop("walk")
+        else:
+            self.pandaActor.pose("walk",0)
 
     # Define a procedure to move the camera.
     def spinCameraTask(self, task):

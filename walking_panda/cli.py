@@ -8,6 +8,8 @@ def cli():
                         action="store_true")
     parser.add_argument("--scale",help="Change Panda Size",
                         action="store", type=float)
+    parser.add_argument("--pose", help="Make Panda Stationary",
+                        action="store_true")
     args = parser.parse_args()
 
     walking = panda.WalkingPanda(**vars(args))
