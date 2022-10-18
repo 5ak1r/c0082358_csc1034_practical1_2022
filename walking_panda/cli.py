@@ -7,7 +7,7 @@ def cli():
     parser.add_argument("--no-rotate",help="Suppress Rotation",
                         action="store_true")
     parser.add_argument("--scale",help="Change Panda Size",
-                        action="store")
+                        action="store", type=float)
     args = parser.parse_args()
 
     walking = panda.WalkingPanda(**vars(args))
