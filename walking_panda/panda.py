@@ -19,7 +19,8 @@ class WalkingPanda(ShowBase):
         self.scene.setPos(-8, 42, 0)
 
         # Add the spinCameraTask procedure to the task manager.
-        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
+        if no_rotate == False:
+            self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
 
         # Load and transform the panda actor.
         self.pandaActor = Actor("models/panda-model",
