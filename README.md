@@ -37,9 +37,13 @@ be created in neat rows of length 4 pandas.
 ---------
 Randomise the color of the panda. The default color is black and white.
 
+`--music`
+---------
+Play Bamboo Forest Sounds while the program runs.
+
 Example Use
 -----------
 `python walking_panda.py --no_rotate --friends=5 --color`
 
 This will create 5 pandas that have randomised colors, in an environment where the
-camera does not move.
+camera does not move. There is no music playing.
