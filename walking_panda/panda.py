@@ -52,7 +52,7 @@ class WalkingPanda(ShowBase):
                 placeholder.setColor(random(), random(), random())
 
             j = floor(i/4)
-            placeholder.setPos((i%4)*3,j*5,0)
+            placeholder.setPos(scale*(i%4)*3,scale*j*5,0)
             self.pandaActor.instanceTo(placeholder)
     # Define a procedure to move the camera.
     def spinCameraTask(self, task):
