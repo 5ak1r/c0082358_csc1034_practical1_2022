@@ -10,6 +10,8 @@ def cli():
                         action="store", type=float)
     parser.add_argument("--pose", help="Make Panda Stationary",
                         action="store_true")
+    parser.add_argument("--friends", help="Make More Pandas",
+                        action="store")
     args = parser.parse_args()
 
     walking = panda.WalkingPanda(**vars(args))

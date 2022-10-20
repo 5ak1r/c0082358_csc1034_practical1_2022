@@ -1,4 +1,4 @@
-from math import pi, sin, cos
+from math import pi, sin, cos, floor
 
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
@@ -7,8 +7,7 @@ from direct.actor.Actor import Actor
 
 class WalkingPanda(ShowBase):
 
-    def __init__(self, no_rotate=False, scale=1, pose=False):
-        print(scale)
+    def __init__(self, no_rotate=False, scale=1, pose=False, friends=1):
         ShowBase.__init__(self)
 
         # Load the environment model.
@@ -26,6 +25,10 @@ class WalkingPanda(ShowBase):
         # Load and transform the panda actor.
         self.pandaActor = Actor("models/panda-model",
                                 {"walk": "models/panda-walk4"})
+        if friends == None:
+            friends = int(1)
+        else:
+            friends = int(friends)
 
         if scale == None:
             scale = float(1)
@@ -39,6 +42,11 @@ class WalkingPanda(ShowBase):
         else:
             self.pandaActor.pose("walk",0)
 
+        for i in range(friends):
+            placeholder = render.attachNewNode("Panda-Placeholder")
+            j = floor(i/4)
+            placeholder.setPos((i%4)*3,j*5,0)
+            self.pandaActor.instanceTo(placeholder)
     # Define a procedure to move the camera.
     def spinCameraTask(self, task):
         angleDegrees = task.time * 6.0
@@ -46,4 +54,3 @@ class WalkingPanda(ShowBase):
         self.camera.setPos(20 * sin(angleRadians), -20.0 * cos(angleRadians), 3)
         self.camera.setHpr(angleDegrees, 0, 0)
         return Task.cont
-
