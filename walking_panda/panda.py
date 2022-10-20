@@ -1,4 +1,5 @@
 from math import pi, sin, cos, floor
+from random import random
 
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
@@ -7,7 +8,7 @@ from direct.actor.Actor import Actor
 
 class WalkingPanda(ShowBase):
 
-    def __init__(self, no_rotate=False, scale=1, pose=False, friends=1):
+    def __init__(self, no_rotate=False, scale=1, pose=False, friends=1, color=False):
         ShowBase.__init__(self)
 
         # Load the environment model.
@@ -34,6 +35,8 @@ class WalkingPanda(ShowBase):
             scale = float(1)
         else:
             scale = float(scale)
+
+
         self.pandaActor.setScale(0.005*scale, 0.005*scale, 0.005*scale)
         self.pandaActor.reparentTo(self.render)
         if pose == False:
@@ -44,6 +47,10 @@ class WalkingPanda(ShowBase):
 
         for i in range(friends):
             placeholder = render.attachNewNode("Panda-Placeholder")
+
+            if color == True:
+                placeholder.setColor(random(), random(), random())
+
             j = floor(i/4)
             placeholder.setPos((i%4)*3,j*5,0)
             self.pandaActor.instanceTo(placeholder)
@@ -51,6 +58,7 @@ class WalkingPanda(ShowBase):
     def spinCameraTask(self, task):
         angleDegrees = task.time * 6.0
         angleRadians = angleDegrees * (pi / 180.0)
+
         self.camera.setPos(20 * sin(angleRadians), -20.0 * cos(angleRadians), 3)
         self.camera.setHpr(angleDegrees, 0, 0)
         return Task.cont

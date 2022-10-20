@@ -12,6 +12,8 @@ def cli():
                         action="store_true")
     parser.add_argument("--friends", help="Make More Pandas",
                         action="store")
+    parser.add_argument("--color", help="Randomise Panda Colors",
+                        action="store_true")
     args = parser.parse_args()
 
     walking = panda.WalkingPanda(**vars(args))
